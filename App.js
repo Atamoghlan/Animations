@@ -36,10 +36,7 @@ export default class App extends Component {
   }
 
   myAnimation = () => {
-    Animated.sequence([
-      this.createAnimation(this.state.animationValue, 3200, Easing.linear, 500),
-
-    ]).start()
+      this.createAnimation(this.state.animationValue, 4000, Easing.linear, 500).start()
   }
   Loading = () => {
     this.createAnimation(this.state.animationOpacity, 10000, Easing.linear, 500).start()
@@ -48,12 +45,12 @@ export default class App extends Component {
   render() {
 
     const logoScale = this.state.animationValue.interpolate({
-      inputRange: [0, 0.4, 1],
-      outputRange: [0, 0.7, 0]
+      inputRange: [0, 0.6, 0.9, 1],
+      outputRange: [0, 0.45,0.45, 0]
     })
     const LoadingOpacity = this.state.animationOpacity.interpolate({
-      inputRange: [0, 0.1, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 1],
-      outputRange: [0, 0.6, 0, 0.7, 0, 0.8, 0, 1, 0]
+      inputRange: [0, 0.15, 0.30, 0.45, 0.60, 0.75, 0.90, 1],
+      outputRange: [0, 0.3, 0, 0.45, 0, 0.6, 0, 1]
     })
 
     return (
@@ -66,21 +63,16 @@ export default class App extends Component {
         <View style={styles.MainContainer}>
           <Animated.View style={[styles.animatedBox, { transform: [{ scale: logoScale }] }]}>
               <Image
-                style={{
-                  alignSelf: 'center', width: 580, height: 580, borderRadius: 105, borderColor: 'white',
-                  borderWidth: 10, padding: 0
-                }}
-                source={require('./images/logo2.png')} />
+                style={styles.logo}
+                source={require('./images/twitter.png')} />
           </Animated.View>
           <View style={{flex:1}}>
             <Text onPress={this.Loading}
-              style={{ fontSize: 30, backgroundColor: 'white', color: 'black' }}>Run Loading</Text>
-            <Animated.Image source={require('./images/logo2.png')}
-              style={{width: 400, height: 400, opacity: LoadingOpacity }} />
+              style={{ marginTop: 60,fontSize: 30, backgroundColor: 'blue', color: 'white',width: 200, 
+              alignSelf: 'center' }}>Run Loading</Text>
+            <Animated.Image source={require('./images/Garfield.png')}
+              style={{marginTop: 20 ,width: 330, height: 220, opacity: LoadingOpacity, resizeMode: 'stretch'}}/>
           </View>
-
-
-
         </View>
       </LinearGradient>
     );
@@ -92,14 +84,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 12,
-
+    padding: 5,
   },
   animatedBox:
   {
     flex:1,
-    width: 180,
-    height: 180,
+    width: 160,
+    height: 160,
   },
-
+  logo:
+  {
+    alignSelf: 'center', width: 580, height: 580, borderRadius: 105, 
+    padding: 0
+  }
 });
