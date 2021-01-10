@@ -45,7 +45,7 @@ export default class App extends Component {
   render() {
 
     const logoScale = this.state.animationValue.interpolate({
-      inputRange: [0, 0.6, 0.9, 1],
+      inputRange: [0, 0.40, 0.9, 1],
       outputRange: [0, 0.45,0.45, 0]
     })
     const LoadingOpacity = this.state.animationOpacity.interpolate({
@@ -66,12 +66,12 @@ export default class App extends Component {
                 style={styles.logo}
                 source={require('./images/twitter.png')} />
           </Animated.View>
-          <View style={{flex:1}}>
+          <View style={styles.viewSecond}>
             <Text onPress={this.Loading}
-              style={{ marginTop: 60,fontSize: 30, backgroundColor: 'blue', color: 'white',width: 200, 
-              alignSelf: 'center' }}>Run Loading</Text>
+              style={styles.loadingText}>Run Loading</Text>
             <Animated.Image source={require('./images/Garfield.png')}
-              style={{marginTop: 20 ,width: 330, height: 220, opacity: LoadingOpacity, resizeMode: 'stretch'}}/>
+              style={[styles.loadingImage, {opacity: LoadingOpacity} 
+              ]}/>
           </View>
         </View>
       </LinearGradient>
@@ -86,15 +86,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
   },
+  loadingImage: {
+    marginTop: 20 ,width: 330, height: 220,
+    resizeMode: 'stretch'
+  },
   animatedBox:
   {
     flex:1,
     width: 160,
     height: 160,
   },
+  viewSecond:
+  {
+    flex:1
+  },
   logo:
   {
     alignSelf: 'center', width: 580, height: 580, borderRadius: 105, 
     padding: 0
-  }
+  },
+  loadingText:{
+     marginTop: 60,fontSize: 30, backgroundColor: 'blue', color: 'white',width: 200, 
+  alignSelf: 'center' 
+ },
+
+
 });
